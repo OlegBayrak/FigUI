@@ -4,6 +4,9 @@ A modern web-based interface built with React & Typescript for [FluidNC](https:/
 
 **[Try the live demo](https://figamore.github.io/FigUI/)** - no hardware needed, runs a simulated machine in the browser.
 
+> [!Note]
+> This repository is a personal fork of [figamore/FigUI](https://github.com/figamore/FigUI). See [Keeping This Fork in Sync](#keeping-this-fork-in-sync) below for how to pull in upstream changes.
+
 ---
 
 ## Table of Contents
@@ -25,6 +28,7 @@ A modern web-based interface built with React & Typescript for [FluidNC](https:/
 - [Plugin API](#plugin-api)
 - [Deployment](#deployment)
 - [Tech Stack](#tech-stack)
+- [Keeping This Fork in Sync](#keeping-this-fork-in-sync)
 - [License](#license)
 
 ---
@@ -183,6 +187,53 @@ The `dist/` directory contains the static index.html.gz file you can upload to t
 
 ---
 
+## Tech Stack
+
+- **UI**: React (aliased to [Preact](https://preactjs.com/) at build time for a smaller bundle), TypeScript
+- **Build tool**: [Vite](https://vitejs.dev/), with a dedicated `esp32` mode that inlines and minifies everything into a single gzip-able HTML file for onboard storage
+- **State management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Code editor**: [CodeJar](https://github.com/antonmedv/codejar)
+- **Icons**: [Lucide](https://lucide.dev/)
+- **Device protocol**: WebSocket (real-time status, jogging, streaming) + HTTP (file operations, settings) against FluidNC's WebUI API
+
+---
+
+## Keeping This Fork in Sync
+
+This repository is a fork of the original project, **[figamore/FigUI](https://github.com/figamore/FigUI)**, kept in sync manually rather than automatically. To pull in the latest changes from upstream:
+
+**Option A — GitHub UI**
+
+Open this repository on GitHub and use the **Sync fork** button on the repo home page.
+
+**Option B — GitHub CLI**
+
+```bash
+gh repo sync <your-username>/FigUI --source figamore/FigUI
+```
+
+**Option C — Git directly**
+
+If the `upstream` remote isn't configured yet:
+
+```bash
+git remote add upstream https://github.com/figamore/FigUI.git
+```
+
+Then, to sync:
+
+```bash
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
+```
+
+---
+
 ## License
 
 GPLv3
+
+This is a fork of [figamore/FigUI](https://github.com/figamore/FigUI), distributed under the same [GPLv3](LICENSE) license.
